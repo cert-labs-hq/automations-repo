@@ -1,0 +1,16 @@
+name: Test Version Action
+on: [workflow_dispatch] # workflow_dispatch allows manual triggers in the UI
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4 # Mandatory for local actions
+
+      - name: Run our custom action
+        id: versioning # You need an ID to capture outputs
+        uses: ./.github/actions/get-version
+
+      - name: Use the Output
+        run: echo "The version created was ${{ steps.versioning.outputs.app-version }}"
