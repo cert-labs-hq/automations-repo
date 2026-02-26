@@ -1,0 +1,15 @@
+name: 'Version Generator'
+description: 'Generates a timestamp-based version'
+outputs:
+  app-version:
+    description: "The generated version string"
+    value: ${{ steps.calc-version.outputs.version }} # Mapping the internal step output to the action output
+runs:
+  using: 'composite'
+  steps:
+    - id: calc-version
+      shell: bash
+      run: |
+        VERSION="v1.0.$(date +%s)"
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Generated version: $VERSION"
