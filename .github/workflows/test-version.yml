@@ -14,3 +14,6 @@ jobs:
 
       - name: Use the Output
         run: echo "The version created was ${{ steps.versioning.outputs.app-version }}"
+
+      - name: debug context
+        run: echo '${{ toJson(github) }}'
