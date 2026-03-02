@@ -17,3 +17,8 @@ jobs:
 
       - name: debug context
         run: echo '${{ toJson(github) }}'
+  test2-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: debug context
+        run: echo '${{ toJson(github) }}'
