@@ -33,7 +33,5 @@ jobs:
           echo "this is a env variable : $MY_ENV_VAR"
   call-reusable-workflow:
     uses: ./.github/workflows/test-reusable-workflow.yml
-    with:
-      ref_name: 'test-ref'
-      secrets: inherit
+    secrets: inherit
   
