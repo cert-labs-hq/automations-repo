@@ -4,28 +4,23 @@ on: [workflow_dispatch]
 jobs:
   test-database:
     runs-on: ubuntu-latest
-    
-    # These services are sidecars to the job
     services:
       postgres:
         image: postgres:15
         env:
           POSTGRES_PASSWORD: password
-        ports: 
+        ports:
           - 5432:5432
-      redis:
-        image: redis
-        ports: 
-          - 6379:6379
+        # 🛡️ Health Check: This ensures the DB is ready
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
-      - name: Check Connectivity
+      - name: Verify DB is Ready
         run: |
-          # Install netcat to test TCP ports
-          sudo apt-get update && sudo apt-get install -y netcat-openbsd
-          
-          # Test Postgres
-          nc -zv localhost 5432
-          
-          # Test Redis
-          nc -zv localhost 6379
+          # Now you don't need 'sleep' or manual retry logic!
+          sudo apt-get update && sudo apt-get install -y postgresql-client
+          pg_isready -h localhost -p 5432
