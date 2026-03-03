@@ -15,3 +15,18 @@ jobs:
     env: *env_vars # Reuse the environment variables
     steps:
       - run: echo "Same environment variables here $MY_JOB_STEP_ENV_VAR and $MY_JOB_STEP_ENV_VAR"
+
+  test: &base_job # Define the anchor on first use
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NODE_VERSION: '18'
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: npm test
+
+  alt-test: *base_job # Reuse the entire job configuration
