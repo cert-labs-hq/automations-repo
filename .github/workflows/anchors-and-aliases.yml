@@ -1,0 +1,17 @@
+name: anchors-and-aliases
+on: [workflow_dispatch] 
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    env: &env_vars # Define the anchor on first use
+      NODE_ENV: production
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - run: echo "Using production settings"
+
+  job2:
+    runs-on: ubuntu-latest
+    env: *env_vars # Reuse the environment variables
+    steps:
+      - run: echo "Same environment variables here ${NODE_ENV} and $DATABASE_URL"

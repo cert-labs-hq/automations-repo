@@ -1,4 +1,4 @@
-name: Test Version Action
+name: only-service-containers
 on: [workflow_dispatch] 
 
 jobs:
