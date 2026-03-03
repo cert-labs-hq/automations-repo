@@ -28,6 +28,7 @@ jobs:
         run: echo '${{ toJson(github) }}'
   use-context-and-env:
     runs-on: ubuntu-22.04  
+    needs: modify-global-env-var
     env:
       MY_JOB_ENV_VAR: ${{github.job}}
     if: github.event_name == 'workflow_dispatch'
