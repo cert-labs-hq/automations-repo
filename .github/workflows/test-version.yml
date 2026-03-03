@@ -41,5 +41,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger an error
-        run: ::error::This is a test error message
+        run: echo "::error file=app.js,line=1,col=5,endColumn=7,title=YOUR-TITLE::Missing semicolon"
   
