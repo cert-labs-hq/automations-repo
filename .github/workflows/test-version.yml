@@ -25,16 +25,21 @@ jobs:
       - name: debug context
         run: echo '${{ toJson(github) }}'
   use-context-and-env:
-    runs-on: ubuntu-2204  
+    runs-on: ubuntu-22.04  
     if: github.event_name == 'workflow_dispatch'
-    
     steps:
       - name: print a variable
         run: |
           echo "this is a env variable : $MY_ENV_VAR"
   call-reusable-workflow:
+    needs: test-action
     uses: ./.github/workflows/test-reusable-workflow.yml
     secrets: inherit
     with:
       ref_name: "$MY_ENV_VAR"
+  error-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger an error
+        run: ::error::This is a test error message
   
