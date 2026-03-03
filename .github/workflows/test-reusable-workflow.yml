@@ -7,6 +7,10 @@ on:
                 type: string
                 required: true
                 default: 'default-ref'
+        secrets:
+            TOP_SECRET:
+                description: 'A top secret value to be used in the workflow'
+                required: true
 
 
 jobs:
