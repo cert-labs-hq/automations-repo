@@ -1,0 +1,24 @@
+name: Test Version Action
+on: [workflow_dispatch] 
+
+jobs:
+  test-database:
+    runs-on: ubuntu-latest
+    # This job runs inside a Node container
+    container: node:20 
+    
+    # These services are sidecars to the job
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: password
+      redis:
+        image: redis
+
+    steps:
+      - name: Check Connectivity
+        # Because we are in a 'job container', we use the service label as the host
+        run: |
+          ping -c 1 postgres
+          ping -c 1 redis
