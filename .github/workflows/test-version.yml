@@ -34,4 +34,6 @@ jobs:
   call-reusable-workflow:
     uses: ./.github/workflows/test-reusable-workflow.yml
     secrets: inherit
+    with:
+      ref_name: ${{ github.event.ref_name }}
   

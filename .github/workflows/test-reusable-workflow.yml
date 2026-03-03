@@ -1,6 +1,12 @@
 name: Test Version Action
 on: 
     workflow_call:
+      inputs:
+        ref_name:
+          description: 'The ref name to use as an environment variable'
+          type: string
+          required: true
+          default: 'default-ref-name'
 
 
 jobs:
@@ -13,3 +19,4 @@ jobs:
         run: |
           the_secret=${{ secrets.TOP_SECRET }}
           echo "The secret value is $the_secret" with ${#the_secret} letters
+          echo "The ref name is ${{ inputs.ref_name }}"
