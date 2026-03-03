@@ -10,4 +10,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4 # Mandatory for local actions
       - name: check secret
-        run: echo "The secret value is ${{ secrets.TOP_SECRET }}"
+        run: |
+          the_secret=${{ secrets.TOP_SECRET }}
+          echo "The secret value is $the_secret" with ${#the_secret} letters
