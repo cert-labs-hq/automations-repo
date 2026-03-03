@@ -37,6 +37,11 @@ jobs:
     secrets: inherit
     with:
       ref_name: "$MY_ENV_VAR"
+  debug-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger an error
+        run: echo "::debug::Set the Octocat variable"
   error-message:
     runs-on: ubuntu-latest
     steps:
