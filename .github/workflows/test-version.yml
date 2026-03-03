@@ -1,10 +1,13 @@
 name: Test Version Action
 on: [workflow_dispatch] # workflow_dispatch allows manual triggers in the UI
 
+env:
+  MY_GLOBAL_ENV_VAR: ${{github.repositoryUrl}}
+
 jobs:
   test-action:
     env:
-      MY_ENV_VAR: ${{github.event.ref_name}}
+      MY_JOB_ENV_VAR: ${{github.job}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -26,11 +29,15 @@ jobs:
         run: echo '${{ toJson(github) }}'
   use-context-and-env:
     runs-on: ubuntu-22.04  
+    env:
+          MY_JOB_STEP_ENV_VAR: ${{github.run_id}}
     if: github.event_name == 'workflow_dispatch'
     steps:
       - name: print a variable
         run: |
-          echo "this is a env variable : $MY_ENV_VAR"
+          echo "this is global env variable : $MY_GLOBAL_ENV_VAR"
+          echo "this is job env variable : $MY_JOB_ENV_VAR"
+          echo "this is step env variable : $MY_JOB_STEP_ENV_VAR"
   call-reusable-workflow:
     needs: test-action
     uses: ./.github/workflows/test-reusable-workflow.yml
