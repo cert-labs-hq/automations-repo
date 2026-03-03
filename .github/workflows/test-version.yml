@@ -74,3 +74,12 @@ jobs:
       - name: condition 2
         if: runner.os != 'Windows'
         run: echo "The operating system on the runner is not Windows, it's $RUNNER_OS."
+  modify-global-env-var:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print original global env var
+        run: echo "The original global env variable is $MY_GLOBAL_ENV_VAR"
+      - name: Modify global env var
+        run: echo "MY_GLOBAL_ENV_VAR=ModifiedValue" >> $GITHUB_ENV
+      - name: Print modified global env var
+        run: echo "The modified global env variable is $MY_GLOBAL_ENV_VAR"
