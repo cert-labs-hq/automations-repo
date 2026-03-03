@@ -4,8 +4,6 @@ on: [workflow_dispatch]
 jobs:
   test-database:
     runs-on: ubuntu-latest
-    # This job runs inside a Node container
-    container: node:20 
     
     # These services are sidecars to the job
     services:
