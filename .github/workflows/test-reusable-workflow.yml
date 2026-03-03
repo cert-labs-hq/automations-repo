@@ -1,0 +1,19 @@
+name: Test Version Action
+on: 
+    workflow_call:
+        inputs:
+            ref_name:
+                description: 'The ref name to use as an environment variable'
+                type: string
+                required: true
+                default: 'default-ref'
+
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4 # Mandatory for local actions
+      - name: check secret
+        run: echo "The secret value is ${{ secrets.TOP_SECRET }}"
