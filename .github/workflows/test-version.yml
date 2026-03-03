@@ -6,8 +6,6 @@ env:
 
 jobs:
   test-action:
-    env:
-      MY_JOB_ENV_VAR: ${{github.job}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -30,10 +28,12 @@ jobs:
   use-context-and-env:
     runs-on: ubuntu-22.04  
     env:
-          MY_JOB_STEP_ENV_VAR: ${{github.run_id}}
+      MY_JOB_ENV_VAR: ${{github.job}}
     if: github.event_name == 'workflow_dispatch'
     steps:
       - name: print a variable
+        env:
+          MY_JOB_STEP_ENV_VAR: ${{github.run_id}}
         run: |
           echo "this is global env variable : $MY_GLOBAL_ENV_VAR"
           echo "this is job env variable : $MY_JOB_ENV_VAR"
