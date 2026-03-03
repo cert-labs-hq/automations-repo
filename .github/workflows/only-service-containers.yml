@@ -11,10 +11,12 @@ jobs:
         image: postgres:15
         env:
           POSTGRES_PASSWORD: password
-        ports: 5432:5432
+        ports: 
+          - 5432:5432
       redis:
         image: redis
-        ports: 6739:6739
+        ports: 
+          - 6739:6739
 
     steps:
       - name: Check Connectivity
