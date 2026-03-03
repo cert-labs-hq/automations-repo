@@ -1,15 +1,6 @@
 name: Test Version Action
 on: 
     workflow_call:
-        inputs:
-            ref_name:
-                description: 'The ref name to use as an environment variable'
-                type: string
-                required: true
-                default: 'default-ref'
-        secrets:
-            TOP_SECRET:
-                description: 'A top secret value to be used in the workflow'
 
 
 jobs:
