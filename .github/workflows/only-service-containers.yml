@@ -23,5 +23,5 @@ jobs:
         # Because we are in a 'job container', we use the service label as the host
         run: |
           apt-get update && apt-get install -y --no-install-recommends iputils-ping && rm -rf /var/lib/apt/lists/*
-          ping -c 1 postgres
-          ping -c 1 redis
+          ping -c 1 localhost:5432
+          ping -c 1 localhost:6739
