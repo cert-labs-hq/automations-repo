@@ -1,0 +1,15 @@
+name: metadata-security
+on: [workflow_dispatch] 
+
+jobs:
+  metadata-test:
+    runs-on: ubuntu-latest
+    steps:
+      # Pinned to SHA for security
+      - uses: actions/checkout@b4ff2048755dc2b8c4d330ad3f05634e6d014894 
+      
+      - name: Print Metadata
+        run: |
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Triggering Actor: ${{ github.actor }}"
+          echo "Runner OS: ${{ runner.os }}"
