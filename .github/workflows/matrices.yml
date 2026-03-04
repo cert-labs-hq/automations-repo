@@ -20,10 +20,21 @@ jobs:
             experimental: true # This variable only exists for this specific job
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
         with:
           node-version: ${{ matrix.node }}
       - name: Experimental Check
         if: ${{ matrix.experimental == true }}
-        run: echo "Running special experimental tests..."
+        run: echo "Running special e53b83947a5a98c8d113130e565377fae1a50d02fxperimental tests..."
+
+  build-sim:
+    runs-on: ${{ matrix.my_custom_os }} # Accessing a custom key
+    strategy:
+      matrix:
+        # You define the keys here:
+        my_custom_os: [ubuntu-latest, windows-latest]
+        foo: [18, 20]
+        
+    steps:
+      - run: echo "Running on ${{ matrix.my_custom_os }} with Node ${{ matrix.foo }}"
