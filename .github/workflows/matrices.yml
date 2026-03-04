@@ -1,5 +1,4 @@
-name: metadata-security
-on: [workflow_dispatch]
+name: matrices
 
 jobs:
   test:
