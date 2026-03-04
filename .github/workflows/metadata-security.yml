@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Pinned to SHA for security
-      - uses: actions/checkout@b4ff2048755dc2b8c4d330ad3f05634e6d014894 
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd 
       
       - name: Print Metadata
         run: |
