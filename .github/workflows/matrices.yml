@@ -1,0 +1,30 @@
+name: metadata-security
+on: [workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false  # 🧪 Don't stop if one OS fails; we want full results
+      max-parallel: 2   # 💰 Save concurrency for other developers
+      matrix:
+        os: [ubuntu-latest, windows-2025]
+        node: [18, 20, 22]
+        # 1. Exclude a problematic combination
+        exclude:
+          - os: windows-2025
+            node: 18
+        # 2. Add an "Extra" job that isn't in the standard product
+        include:
+          - os: ubuntu-latest
+            node: 20
+            experimental: true # This variable only exists for this specific job
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Experimental Check
+        if: ${{ matrix.experimental == true }}
+        run: echo "Running special experimental tests..."
