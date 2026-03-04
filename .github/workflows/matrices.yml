@@ -1,4 +1,5 @@
 name: matrices
+on: workflow_dispatch
 
 jobs:
   test:
