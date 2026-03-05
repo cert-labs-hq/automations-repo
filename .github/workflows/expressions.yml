@@ -60,10 +60,6 @@ jobs:
                 echo "toJSON: ${{ toJson(github) }}"
                 echo "fromJSON: ${{ fromJson(toJson(github)) }}"
                 echo "hashFiles: ${{ hashFiles('**/*.yml') }}"
-                echo "success(): ${{ success() }}"
-                echo "failure(): ${{ failure() }}"
-                echo "always(): ${{ always() }}"
-                echo "cancelled(): ${{ cancelled() }}"
 
         - name: success() function test
           if: ${{ success() }}
@@ -73,6 +69,11 @@ jobs:
           if: ${{ failure() }}
           run: echo "This step runs only if any previous step failed."  
 
+        - name: Failing step
+          id: demo
+          run: exit 1
+        
         - name: The demo step has failed
-        if: ${{ failure() && steps.demo.conclusion == 'failure' }}
+          if: ${{ failure() && steps.demo.conclusion == 'failure' }}
+          run: echo "The demo step has failed as expected."
 
