@@ -2,7 +2,15 @@ name: expressions
 on: [workflow_dispatch] 
 
 env:
-    MY_JOB_ENV_VAR: ${{github.job}}
+  MY_JOB_ENV_VAR: ${{github.job}}
+  myNull: ${{ null }}
+  myBoolean: ${{ false }}
+  myIntegerNumber: ${{ 711 }}
+  myFloatNumber: ${{ -9.2 }}
+  myHexNumber: ${{ 0xff }}
+  myExponentialNumber: ${{ -2.99e-2 }}
+  myString: Mona the Octocat
+  myStringInBraces: ${{ 'It''s open source!' }}
 
 jobs:
   expressions-static:
@@ -37,5 +45,34 @@ jobs:
           run: |
                 echo "You don't need to use brackets and quotes for simple expressions like this."
                 echo "Current Workflow: ${{ github.workflow }}"
+                echo "current job: ${{ github.job }}""
                 echo "Event Name: ${{ github.event_name }}"
                 echo "Repository: ${{ github.repository }}"
+
+        - name: Functions
+          run: |
+                echo "This is a test of some functions."
+                echo "contains 'Octocat' in repository: ${{ contains(github.repository, 'Octocat') }}"
+                echo "StartsWith: startsWith('Hello world', 'He'): ${{ startsWith('Hello world', 'He') }}"
+                echo "EndsWith: endsWith('Hello world', 'ld'): ${{ endsWith('Hello world', 'ld') }}"
+                echo "Format: format('Hello {0}', 'Mona'): ${{ format('Hello {0}', 'Mona') }}"
+                echo "join: join('Hello', 'world'): ${{ join('Hello', 'world') }}"
+                echo "toJSON: ${{ toJson(github) }}"
+                echo "fromJSON: ${{ fromJson(toJson(github)) }}"
+                echo "hashFiles: ${{ hashFiles('**/*.yml') }}"
+                echo "success(): ${{ success() }}"
+                echo "failure(): ${{ failure() }}"
+                echo "always(): ${{ always() }}"
+                echo "cancelled(): ${{ cancelled() }}"
+
+        - name: success() function test
+          if: ${{ success() }}
+          run: echo "This step runs only if all previous steps were successful."
+        
+        - name: failure() function test
+          if: ${{ failure() }}
+          run: echo "This step runs only if any previous step failed."  
+
+        - name: The demo step has failed
+        if: ${{ failure() && steps.demo.conclusion == 'failure' }}
+
