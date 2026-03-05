@@ -1,4 +1,4 @@
-name: Test Version Action
+name: variables
 on: [workflow_dispatch] # workflow_dispatch allows manual triggers in the UI
 
 env:
