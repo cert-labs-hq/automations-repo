@@ -27,3 +27,15 @@ jobs:
             echo "Event Name: ${{ github.event_name }}"
             echo "Repository: ${{ github.repository }}"
             echo "Job name: $MY_JOB_ENV_VAR"
+
+        - name: Case Insensitive Test
+          run: |
+            echo "Are equal: [[ "${{GITHUB.REF}}" == "${{github.ref}}" ]]"
+        
+        - name: Implicit strings
+          if: github.event_name == 'workflow_dispatch'  # This will be true, but it's just for demonstration
+            run: |
+                echo "You don't need to use brackets and quotes for simple expressions like this."
+                echo "Current Workflow: ${{ github.workflow }}"
+                echo "Event Name: ${{ github.event_name }}"
+                echo "Repository: ${{ github.repository }}"
