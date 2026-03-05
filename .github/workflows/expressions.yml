@@ -20,7 +20,7 @@ jobs:
             echo "Job name: $MY_JOB_ENV_VAR"
         
         - name: Static Expression Test
-          if: ${{ github.event_name == 'push' }} # This is a static expression that always evaluates to true
+          if: ${{ github.event_name == 'push' }} # This will always be false in a workflow_dispatch, but it's just for demonstration
           run: |
             echo "This is a static expression test."
             echo "Current Workflow: ${{ github.workflow }}"
