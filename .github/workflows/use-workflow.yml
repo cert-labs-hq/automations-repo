@@ -3,7 +3,7 @@ on: [workflow_dispatch] # workflow_dispatch allows manual triggers in the UI
 
 jobs:
   call-reusable-workflow:
-    uses: ./.github/workflows/test-reusable-workflow.yml
+    uses: ./.github/workflows/reusable-workflow.yml
     secrets: inherit
     with:
       ref_name: "$MY_ENV_VAR"
