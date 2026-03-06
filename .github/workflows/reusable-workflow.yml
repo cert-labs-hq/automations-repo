@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4 # Mandatory for local actions
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # Mandatory for local actions
       - name: check secret
         run: |
           the_secret=${{ secrets.TOP_SECRET }}
