@@ -1,9 +1,14 @@
 name: Use workflow
 on: [workflow_dispatch] # workflow_dispatch allows manual triggers in the UI
 
+env:
+  MY_GLOBAL_ENV_VAR: ${{github.repositoryUrl}}
+  DAY_OF_WEEK: Monday
+  MY_ENV_VAR: {{github.ref}}
+
 jobs:
   call-reusable-workflow:
     uses: ./.github/workflows/reusable-workflow.yml
     secrets: inherit
     with:
-      ref_name: "$MY_ENV_VAR"
+      ref_name: "$MY_ENV_VAR" 

@@ -50,12 +50,6 @@ jobs:
         run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
         env:
           First_Name: Mona
-  call-reusable-workflow:
-    needs: test-action
-    uses: ./.github/workflows/test-reusable-workflow.yml
-    secrets: inherit
-    with:
-      ref_name: "$MY_ENV_VAR"
   debug-message:
     runs-on: ubuntu-latest
     steps:
