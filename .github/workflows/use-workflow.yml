@@ -8,8 +8,11 @@ env:
 
 jobs:
   debug-env:
-    run: |
-      echo "$MY_ENV_VAR" 
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: debug env
+        run: |
+          echo "$MY_ENV_VAR" 
   call-reusable-workflow:
     uses: ./.github/workflows/reusable-workflow.yml
     secrets: inherit
