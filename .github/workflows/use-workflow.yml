@@ -4,7 +4,7 @@ on: [workflow_dispatch] # workflow_dispatch allows manual triggers in the UI
 env:
   MY_GLOBAL_ENV_VAR: ${{github.repositoryUrl}}
   DAY_OF_WEEK: Monday
-  MY_ENV_VAR: {{github.ref}}
+  MY_ENV_VAR: ${{github.ref}}
 
 jobs:
   call-reusable-workflow:
