@@ -6,7 +6,6 @@ on:
           description: 'The ref name to use as an environment variable'
           type: string
           required: true
-          default: 'default-ref-name'
 
 
 jobs:
@@ -20,3 +19,16 @@ jobs:
           the_secret=${{ secrets.TOP_SECRET }}
           echo "The secret value is $the_secret" with ${#the_secret} letters
           echo "The ref name is ${{ inputs.ref_name }}"
+          
+      - name: Verify Versioning Ref
+        env:
+          WORKFLOW_REF: ${{ github.workflow_ref }} # Map to env var here
+        run: |
+          echo "This workflow is running from: $WORKFLOW_REF"
+          
+          # Use the env var in the comparison
+          if [[ "$WORKFLOW_REF" == *"refs/tags/"* ]]; then
+            echo "✅ SUCCESS: Running from a stable Tag."
+          else
+            echo "⚠️ WARNING: Running from a Branch (unstable)."
+          fi
