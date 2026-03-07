@@ -9,7 +9,7 @@ on:
       secrets:
         TOP_SECRET:
           description: 'A top secret'
-          
+
 
 
 jobs:
