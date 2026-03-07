@@ -6,6 +6,10 @@ on:
           description: 'The ref name to use as an environment variable'
           type: string
           required: true
+      secrets:
+        TOP_SECRET:
+          description: 'A top secret'
+          
 
 
 jobs:
