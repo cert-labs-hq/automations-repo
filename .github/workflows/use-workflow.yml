@@ -14,6 +14,8 @@ jobs:
         run: |
           echo "$MY_ENV_VAR" 
   call-reusable-workflow:
+    # Here define the workflow ref is not needed because we are calling a workflow in the same repository. 
+    # If it was in a different repository, we would need to specify the ref (branch, tag, or commit SHA) to use.
     uses: ./.github/workflows/reusable-workflow.yml
     secrets: inherit
     with:
