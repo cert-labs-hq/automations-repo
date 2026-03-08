@@ -13,3 +13,4 @@ runs:
         VERSION="v1.0.$(date +%s)"
         echo "version=$VERSION" >> $GITHUB_OUTPUT
         echo "Generated version: $VERSION"
+        echo "some other info: $GITHUB_REPOSITORY" # Example of using a GitHub context variable
