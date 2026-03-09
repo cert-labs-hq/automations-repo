@@ -1,0 +1,31 @@
+name: 'Smart Setup'
+description: 'Standardized setup with built-in caching'
+inputs:
+  node-version:
+    description: 'Version of Node to use'
+    default: '20'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    # THIS IS THE PART TO PRACTICE
+    - name: Cache Node Modules
+      uses: actions/cache@v4
+      id: node-cache
+      with:
+        path: '**/node_modules'
+        # The Key is the most important part of Domain 1 & 3
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Install Dependencies
+      # We only run this if there was a cache miss
+      if: steps.node-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: npm ci
