@@ -10,14 +10,14 @@ runs:
   steps:
     - name: Setup Node
       # actions/setup-node@v6.0.0
-      uses: actions/setup-node@125fa4c58f96e45300f898a1a39d89196b68a4d7
+      uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
       with:
         node-version: ${{ inputs.node-version }}
 
     # THIS IS THE PART TO PRACTICE
     - name: Cache Node Modules
       # actions/cache@v4.2.2
-      uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf
+      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306
       id: node-cache
       with:
         path: '**/node_modules'
