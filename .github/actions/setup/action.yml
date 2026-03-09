@@ -9,13 +9,15 @@ runs:
   using: 'composite'
   steps:
     - name: Setup Node
-      uses: actions/setup-node@v4
+      # actions/setup-node@v6.0.0
+      uses: actions/setup-node@125fa4c58f96e45300f898a1a39d89196b68a4d7
       with:
         node-version: ${{ inputs.node-version }}
 
     # THIS IS THE PART TO PRACTICE
     - name: Cache Node Modules
-      uses: actions/cache@v4
+      # actions/cache@v4.2.2
+      uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf
       id: node-cache
       with:
         path: '**/node_modules'
