@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily" # Checks for new versions every day
+    groups:
+      actions:
+        patterns:
+          - "*" # Groups all action updates into one PR
