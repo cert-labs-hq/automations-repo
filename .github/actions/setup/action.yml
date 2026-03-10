@@ -31,3 +31,10 @@ runs:
       if: steps.node-cache.outputs.cache-hit != 'true'
       shell: bash
       run: npm ci
+
+    - name: 📊 Check Dependency Size
+      shell: bash
+      run: |
+        echo "### Dependency Summary" >> $GITHUB_STEP_SUMMARY
+        echo "- **NPM Cache Size:** $(du -sh ~/.npm | cut -f1)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Node Modules Size:** $(du -sh node_modules | cut -f1)" >> $GITHUB_STEP_SUMMARY

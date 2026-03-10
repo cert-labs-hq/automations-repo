@@ -1,0 +1,10 @@
+on:
+  workflow_call:
+
+jobs:
+  build:
+    uses: ./.github/workflows/node-build.yml # Nested call
+
+  compliance:
+    needs: build
+    uses: ./.github/workflows/compliance-logic.yml # Nested call
