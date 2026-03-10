@@ -1,10 +1,7 @@
 name: Compliance Reporting
 
 on:
-  workflow_run:
-    workflows: ["node build"] # MUST match the 'name' in a workflow
-    types:
-      - completed
+  workflow_call:
 
 jobs:
   analyze-compliance:
