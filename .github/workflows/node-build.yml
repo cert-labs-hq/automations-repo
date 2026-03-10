@@ -1,5 +1,6 @@
 name: node build
-on: [workflow_dispatch] # workflow_dispatch allows manual triggers in the UI
+on:
+  workflow_call:
 
 jobs:
   build:
