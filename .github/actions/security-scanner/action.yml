@@ -1,0 +1,12 @@
+name: 'Custom Security Scanner'
+description: 'Runs a custom scan inside a controlled Docker environment'
+inputs:
+  scan-target:
+    description: 'The directory to scan'
+    required: true
+    default: '.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile' # GitHub will build this on the fly
+  args:
+    - ${{ inputs.scan-target }}

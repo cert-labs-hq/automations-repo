@@ -1,0 +1,16 @@
+name: use docker action
+on: [workflow_dispatch] # workflow_dispatch allows manual triggers in the UI
+
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # Mandatory for local actions
+
+    - name: Run our custom action
+      id: versioning # You need an ID to capture outputs
+      uses: ./.github/actions/security-scanner
+      with:
+        scan-target: './' # You can specify any directory here, or use the default from
