@@ -1,43 +1,40 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
-async function run() {
-  try {
-    // 1. Get Input defined in action.yml
-    const nameToGreet = core.getInput('who-to-greet');
-    
-    console.log(`Hello, ${nameToGreet}!`);
 
-    core.debug('Inside try block');
-    core.warning('A warning message');
+try {
+  // 1. Get Input defined in action.yml
+  const nameToGreet = core.getInput('who-to-greet');
+  
+  console.log(`Hello, ${nameToGreet}!`);
 
-    // Creates a warning pointing to a specific file (Great for Linters!)
-    core.warning('Deprecation Notice', {
-      file: 'app.js',
-      startLine: 10,
-      title: 'Old API Detected'
-    });
+  core.debug('Inside try block');
+  core.warning('A warning message');
 
-    core.error('test');
+  // Creates a warning pointing to a specific file (Great for Linters!)
+  core.warning('Deprecation Notice', {
+    file: 'app.js',
+    startLine: 10,
+    title: 'Old API Detected'
+  });
 
-    // 2. Do some "work"
-    const timestamp = new Date().toTimeString();
-    
-    // 3. Set Output defined in action.yml
-    core.setOutput("time", timestamp);
+  core.error('test');
 
-    // Get the JSON webhook payload for the event that triggered the workflow
-    const payload = JSON.stringify(github.context.payload, undefined, 2);
-    core.info(`The event payload: ${payload}`);
+  // 2. Do some "work"
+  const timestamp = new Date().toTimeString();
+  
+  // 3. Set Output defined in action.yml
+  core.setOutput("time", timestamp);
 
-    core.notice('This is a message that will also emit an annotation')
+  // Get the JSON webhook payload for the event that triggered the workflow
+  const payload = JSON.stringify(github.context.payload, undefined, 2);
+  core.info(`The event payload: ${payload}`);
 
-    core.summary.addRaw('Some content here :speech_balloon:', true)
+  core.notice('This is a message that will also emit an annotation')
 
-  } catch (error) {
-    // 4. Properly fail the action if something goes wrong
-    core.setFailed(`Action failed with error: ${error.message}`);
-  }
+  core.summary.addRaw('Some content here :speech_balloon:', true)
+
+} catch (error) {
+  // 4. Properly fail the action if something goes wrong
+  core.setFailed(`Action failed with error: ${error.message}`);
 }
-
-run();

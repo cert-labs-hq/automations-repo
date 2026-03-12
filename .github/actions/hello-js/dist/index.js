@@ -488,6 +488,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.prepareKeyValueMessage = exports.issueFileCommand = void 0;
 // We use any as a valid input type
 /* eslint-disable @typescript-eslint/no-explicit-any */
+const crypto = __importStar(__nccwpck_require__(6982));
 const fs = __importStar(__nccwpck_require__(9896));
 const os = __importStar(__nccwpck_require__(857));
 const utils_1 = __nccwpck_require__(302);
@@ -1881,6 +1882,7 @@ class Context {
         this.action = process.env.GITHUB_ACTION;
         this.actor = process.env.GITHUB_ACTOR;
         this.job = process.env.GITHUB_JOB;
+        this.runAttempt = parseInt(process.env.GITHUB_RUN_ATTEMPT, 10);
         this.runNumber = parseInt(process.env.GITHUB_RUN_NUMBER, 10);
         this.runId = parseInt(process.env.GITHUB_RUN_ID, 10);
         this.apiUrl = (_a = process.env.GITHUB_API_URL) !== null && _a !== void 0 ? _a : `https://api.github.com`;
@@ -31835,26 +31837,43 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(7484);
 const github = __nccwpck_require__(3228);
 
-async function run() {
-  try {
-    // 1. Get Input defined in action.yml
-    const nameToGreet = core.getInput('who-to-greet');
-    
-    console.log(`Hello, ${nameToGreet}!`);
 
-    // 2. Do some "work"
-    const timestamp = new Date().toTimeString();
-    
-    // 3. Set Output defined in action.yml
-    core.setOutput("time", timestamp);
+try {
+  // 1. Get Input defined in action.yml
+  const nameToGreet = core.getInput('who-to-greet');
+  
+  console.log(`Hello, ${nameToGreet}!`);
 
-  } catch (error) {
-    // 4. Properly fail the action if something goes wrong
-    core.setFailed(`Action failed with error: ${error.message}`);
-  }
+  core.debug('Inside try block');
+  core.warning('A warning message');
+
+  // Creates a warning pointing to a specific file (Great for Linters!)
+  core.warning('Deprecation Notice', {
+    file: 'app.js',
+    startLine: 10,
+    title: 'Old API Detected'
+  });
+
+  core.error('test');
+
+  // 2. Do some "work"
+  const timestamp = new Date().toTimeString();
+  
+  // 3. Set Output defined in action.yml
+  core.setOutput("time", timestamp);
+
+  // Get the JSON webhook payload for the event that triggered the workflow
+  const payload = JSON.stringify(github.context.payload, undefined, 2);
+  core.info(`The event payload: ${payload}`);
+
+  core.notice('This is a message that will also emit an annotation')
+
+  core.summary.addRaw('Some content here :speech_balloon:', true)
+
+} catch (error) {
+  // 4. Properly fail the action if something goes wrong
+  core.setFailed(`Action failed with error: ${error.message}`);
 }
-
-run();
 module.exports = __webpack_exports__;
 /******/ })()
 ;
