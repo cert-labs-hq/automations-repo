@@ -1,4 +1,5 @@
-const core = require('./node_modules/@actions/core/lib/core.js');
+const core = require('@actions/core');
+const github = require('@actions/github');
 
 async function run() {
   try {
