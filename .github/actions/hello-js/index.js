@@ -8,11 +8,22 @@ async function run() {
     
     console.log(`Hello, ${nameToGreet}!`);
 
+    core.debug('Inside try block');
+    core.warning('A warning message');
+
     // 2. Do some "work"
     const timestamp = new Date().toTimeString();
     
     // 3. Set Output defined in action.yml
     core.setOutput("time", timestamp);
+
+    // Get the JSON webhook payload for the event that triggered the workflow
+    const payload = JSON.stringify(github.context.payload, undefined, 2);
+    core.info(`The event payload: ${payload}`);
+
+    core.notice('This is a message that will also emit an annotation')
+
+    core.summary.addRaw('Some content here :speech_balloon:', true)
 
   } catch (error) {
     // 4. Properly fail the action if something goes wrong
