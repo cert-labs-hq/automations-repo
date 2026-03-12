@@ -12,3 +12,5 @@ jobs:
     - name: Run our custom action
       id: versioning # You need an ID to capture outputs
       uses: ./.github/actions/hello-js
+      with:
+        who-to-greet: 'Cristian' # This input is defined in action.yml
