@@ -1,12 +1,13 @@
-name: 'Custom Security Scanner'
-description: 'Runs a custom scan inside a controlled Docker environment'
+name: 'Standard JS Action'
+description: 'Professional JS Action setup'
 inputs:
-  scan-target:
-    description: 'The directory to scan'
+  who-to-greet:
+    description: 'Name to greet'
     required: true
-    default: '.'
+    default: 'DevEx Engineer'
+outputs:
+  time:
+    description: 'The time of the greeting'
 runs:
-  using: 'docker'
-  image: 'Dockerfile' # GitHub will build this on the fly
-  args:
-    - ${{ inputs.scan-target }}
+  using: 'node20'
+  main: 'dist/index.js' # We point to the bundled file, not the source

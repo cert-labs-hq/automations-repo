@@ -1,0 +1,22 @@
+# 📦 Dependencies
+node_modules/
+package-lock.json
+
+# 🛠️ Build Outputs
+# DO NOT ignore the 'dist' folder! 
+# We need it for the GitHub Runner.
+# dist/  <-- Keep this commented out or removed
+
+# 🧪 Testing
+coverage/
+.nyc_output/
+
+# 🔍 IDE & OS
+.vscode/
+.idea/
+.DS_Store
+*.log
+npm-debug.log*
+
+# 🤫 Secrets
+.env
