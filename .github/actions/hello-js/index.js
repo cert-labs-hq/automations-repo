@@ -18,6 +18,8 @@ async function run() {
       title: 'Old API Detected'
     });
 
+    core.error('test');
+
     // 2. Do some "work"
     const timestamp = new Date().toTimeString();
     
