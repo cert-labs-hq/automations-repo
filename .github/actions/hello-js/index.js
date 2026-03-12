@@ -11,6 +11,13 @@ async function run() {
     core.debug('Inside try block');
     core.warning('A warning message');
 
+    // Creates a warning pointing to a specific file (Great for Linters!)
+    core.warning('Deprecation Notice', {
+      file: 'app.js',
+      startLine: 10,
+      title: 'Old API Detected'
+    });
+
     // 2. Do some "work"
     const timestamp = new Date().toTimeString();
     
