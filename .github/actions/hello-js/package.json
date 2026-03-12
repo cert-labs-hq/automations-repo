@@ -9,7 +9,7 @@
   },
   "keywords": [],
   "author": "",
-  "type": "module",
+  "type": "commonjs",
   "license": "ISC",
   "dependencies": {
     "@actions/core": "^3.0.0",
