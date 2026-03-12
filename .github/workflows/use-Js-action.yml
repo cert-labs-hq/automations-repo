@@ -14,3 +14,7 @@ jobs:
       uses: ./.github/actions/hello-js
       with:
         who-to-greet: 'Cristian' # This input is defined in action.yml
+    
+          # Use the output from the `hello` step
+    - name: Get the output time
+      run: echo "The time was ${{ steps.versioning.outputs.time }}"
