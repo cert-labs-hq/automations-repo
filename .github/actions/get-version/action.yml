@@ -11,6 +11,9 @@ runs:
       shell: bash
       run: |
         VERSION="v1.0.$(date +%s)"
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "version=$VERSION" >> $GITHUB_OUTPUT # The old way was deprecated due security concerns (::set-output name=version::$VERSION)
         echo "Generated version: $VERSION"
         echo "some other info: $GITHUB_REPOSITORY" # Example of using a GitHub context variable
+        echo "::error file=app.js,line=1::Msg"
+        echo "::warning file=app.js,line=2::Msg"
+        echo "::notice file=app.js,line=3::Msg"

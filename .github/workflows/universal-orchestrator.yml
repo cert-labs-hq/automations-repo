@@ -10,4 +10,4 @@ jobs:
     uses: ./.github/workflows/compliance-logic.yml # Nested call
     with:
       # Pass the output from the build to the compliance workflow
-      report-artifact-name: ${{ needs.build.outputs.artifact-name }}
+      report-artifact-name: ${{ needs.build.outputs.artifact-name }}  
