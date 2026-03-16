@@ -10,7 +10,7 @@ jobs:
       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd 
     - name: Run single repo action
       id: versioning # You need an ID to capture outputs
-      uses: cert-labs-hq/org_action/get-version@1786121980c9bdb51ca76439d1fa10a2b7fc4a8f # Using the version generator action from the same repo
+      uses: cert-labs-hq/org_action@1786121980c9bdb51ca76439d1fa10a2b7fc4a8f # Using the version generator action from the same repo
       #uses: cert-labs-hq/org-action/.github/get-action@v1.0.0
       with:
           who-to-greet: "GitHub Actions User" # Example of passing an input to the action
