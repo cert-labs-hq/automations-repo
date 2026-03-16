@@ -17,3 +17,4 @@ runs:
         echo "::error file=app.js,line=1::Msg"
         echo "::warning file=app.js,line=2::Msg"
         echo "::notice file=app.js,line=3::Msg"
+        echo "::warning ::This release is old. Consider updating."
