@@ -1,5 +1,9 @@
 on:
   workflow_call:
+    inputs:
+      repo_name:
+        required: true
+        type: string
     secrets:
       BOT_TOKEN:
         required: true
@@ -16,6 +20,7 @@ jobs:
           uses: cert-labs-hq/automations-repo/.github/actions/drift-fixer@v1
           with:
             token: ${{ secrets.BOT_TOKEN }}
+            repository: ${{ inputs.repo_name }} # Ensures it checks out the caller repo
 
   build:
     needs: run-compliance
