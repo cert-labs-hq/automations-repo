@@ -15,7 +15,7 @@ jobs:
             token: ${{ secrets.BOT_TOKEN }}
 
   build:
-    uses: ./.github/workflows/node-build.yml # Nested call
+    uses: cert-labs-hq/automations-repo/.github/workflows/node-build.yml@v1 # Nested call
 
   compliance:
     needs: build
