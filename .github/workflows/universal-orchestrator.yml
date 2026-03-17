@@ -2,6 +2,18 @@ on:
   workflow_call:
 
 jobs:
+  run-compliance:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        # Call your centralized action
+        - name: Run Drift Fixer
+          uses: cert-labs-hq/automations-repo/.github/actions/drift-fixer@v1
+          with:
+            token: ${{ secrets.BOT_TOKEN }}
+
   build:
     uses: ./.github/workflows/node-build.yml # Nested call
 
