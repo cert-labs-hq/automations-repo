@@ -21,7 +21,7 @@ jobs:
 
       - name: Run Smart Setup
         # Use the SHA pinned by Dependabot
-        uses: cert-labs-hq/automations-repo/.github/actions/setup@e5c565b97dd8b169d97c08cde9f9be7469a64133
+        uses: cert-labs-hq/automations-repo/.github/actions/setup@b321e2bd10a731216bed0d426100f0fe61249e43
         with:
           node-version: '24'
 
