@@ -1,5 +1,8 @@
 on:
   workflow_call:
+    secrets:
+      BOT_TOKEN:
+        required: true
 
 jobs:
   run-compliance:
@@ -15,6 +18,7 @@ jobs:
             token: ${{ secrets.BOT_TOKEN }}
 
   build:
+    needs: run-compliance
     uses: cert-labs-hq/automations-repo/.github/workflows/node-build.yml@v1 # Nested call
 
   compliance:
