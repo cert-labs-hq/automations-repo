@@ -19,7 +19,7 @@ jobs:
 
   compliance:
     needs: build
-    uses: ./.github/workflows/compliance-logic.yml # Nested call
+    uses: cert-labs-hq/automations-repo/.github/workflows/compliance-logic.yml@v1 # Nested call
     with:
       # Pass the output from the build to the compliance workflow
       report-artifact-name: ${{ needs.build.outputs.artifact-name }}  
