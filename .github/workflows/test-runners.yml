@@ -1,0 +1,11 @@
+name: test runner
+on: [workflow_dispatch] # workflow_dispatch allows manual triggers in the UI
+
+jobs:
+  test-runner:
+    runs-on: 
+        group: Internal-Automation-Group
+        labels: [mac-mini-runner]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6 # Mandatory for local actions
