@@ -92,7 +92,7 @@ jobs:
         run: |
           echo "$color" > color
       - name: Produce Artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: ${{ matrix.color }}
           path: color
